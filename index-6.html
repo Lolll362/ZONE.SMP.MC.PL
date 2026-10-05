@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ZONE.SMP.PL — nowoczesny serwer Minecraft. PvP, ekonomia, eventy i świetna społeczność.">
+<meta name="theme-color" content="#07110d">
+<title>ZONE.SMP.PL — Minecraft Server</title>
+<style>
+:root{
+  --bg:#050907;--panel:#0a1410;--panel2:#0d1b15;--line:#17372a;
+  --green:#42ff9a;--green2:#17c978;--text:#e9fff3;--muted:#91ab9e;
+  --danger:#ff5d6c;--shadow:0 0 35px rgba(66,255,154,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);color:var(--text);overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-3;
+  background:
+    linear-gradient(rgba(66,255,154,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(66,255,154,.035) 1px,transparent 1px);
+  background-size:45px 45px;
+  animation:grid 18s linear infinite;
+}
+body:after{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(circle at 50% 0%,rgba(23,201,120,.16),transparent 38%);
+}
+@keyframes grid{to{background-position:45px 45px}}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.container{width:min(1160px,92%);margin:auto}
+nav{
+  position:sticky;top:0;z-index:20;
+  backdrop-filter:blur(16px);
+  background:rgba(5,9,7,.76);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.logo{font-size:21px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--green);text-shadow:0 0 18px rgba(66,255,154,.5)}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-size:13px;color:var(--muted);transition:.2s}
+.nav-links a:hover{color:var(--green)}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:10px}
+.hero{min-height:650px;display:grid;place-items:center;text-align:center;padding:80px 0 50px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
+  background:rgba(10,20,16,.75);padding:9px 14px;border-radius:999px;
+  color:var(--green);font-size:12px;font-weight:800;letter-spacing:.8px;
+}
+.dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green);animation:pulse 1.5s infinite}
+@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}
+h1{font-size:clamp(52px,10vw,105px);line-height:.9;margin:25px 0 18px;letter-spacing:-5px}
+h1 span{color:var(--green);text-shadow:0 0 35px rgba(66,255,154,.22)}
+.hero p{max-width:680px;margin:auto;color:var(--muted);font-size:17px;line-height:1.7}
+.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{
+  border:1px solid var(--line);padding:13px 20px;border-radius:12px;
+  font-weight:850;cursor:pointer;transition:.2s;background:var(--panel);color:var(--text)
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--green);box-shadow:var(--shadow)}
+.btn.primary{background:var(--green);color:#031008;border-color:var(--green)}
+.btn.primary:hover{background:#72ffb5}
+.status{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  border:1px solid var(--line);background:var(--line);border-radius:18px;overflow:hidden;
+  box-shadow:var(--shadow);margin-bottom:75px
+}
+.stat{background:var(--panel);padding:23px;text-align:center}
+.stat strong{display:block;font-size:22px}.stat small{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.online{color:var(--green)}
+section{padding:45px 0 85px}
+.section-title{text-align:center;margin-bottom:35px}
+.section-title h2{font-size:35px}.section-title p{color:var(--muted);margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{
+  background:linear-gradient(145deg,rgba(13,27,21,.95),rgba(7,15,11,.95));
+  border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow)
+}
+.card h3{font-size:20px;margin-bottom:8px}.card p{color:var(--muted);line-height:1.65}
+.player{display:flex;gap:20px;align-items:center}
+.avatar{
+  width:78px;height:78px;border-radius:16px;border:1px solid var(--line);
+  background:linear-gradient(135deg,#17372a,#07110d);display:grid;place-items:center;
+  font-size:25px;font-weight:900;color:var(--green)
+}
+.rank{color:var(--green);font-size:12px;font-weight:900;letter-spacing:1px}
+.progress{height:8px;background:#10251b;border-radius:10px;overflow:hidden;margin:12px 0 6px}
+.progress i{display:block;width:73%;height:100%;background:var(--green);box-shadow:0 0 15px rgba(66,255,154,.5)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.mini{background:#07110d;border:1px solid var(--line);padding:13px;border-radius:12px}
+.mini b{display:block;font-size:18px}.mini span{font-size:11px;color:var(--muted)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:15px 10px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--muted);font-size:11px;text-transform:uppercase}
+td{font-weight:700}.pos{color:var(--green)}
+.shop{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.price{font-size:34px;font-weight:950;margin:18px 0}.price small{font-size:13px;color:var(--muted)}
+.shop ul{list-style:none;color:var(--muted);line-height:2;margin-bottom:20px}
+.shop li:before{content:"✓";color:var(--green);margin-right:8px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature .icon{font-size:28px;margin-bottom:15px}
+.cta{text-align:center;padding:55px 25px;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at center,rgba(23,201,120,.13),rgba(7,15,11,.95) 60%)}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}
+footer .container{display:flex;justify-content:space-between;gap:20px}
+.toast{
+  position:fixed;right:18px;bottom:18px;z-index:50;background:#0c1b14;border:1px solid var(--green);
+  padding:14px 17px;border-radius:12px;box-shadow:0 0 30px rgba(66,255,154,.15);
+  transform:translateY(120px);opacity:0;transition:.3s
+}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:800px){
+  .nav-links{display:none;position:absolute;top:72px;left:0;right:0;padding:18px;background:#050907;border-bottom:1px solid var(--line);flex-direction:column}
+  .nav-links.open{display:flex}.menu{display:block}
+  .status,.grid2,.shop,.features{grid-template-columns:1fr}
+  h1{letter-spacing:-3px}.hero{min-height:590px}
+  footer .container{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="logo" href="#start">ZONE<span>.SMP.PL</span></a>
+    <button class="menu" id="menu">☰</button>
+    <div class="nav-links" id="nav">
+      <a href="#start">START</a><a href="#gracz">GRACZ</a><a href="#ranking">RANKING</a>
+      <a href="#ekonomia">EKONOMIA</a><a href="#serwer">SERWER</a>
+      <a href="https://discord.gg/tDN3ZeZey" target="_blank" rel="noopener">DISCORD</a>
+    </div>
+  </div>
+</nav>
+
+<main id="start">
+<section class="hero">
+  <div class="container">
+    <div class="badge"><i class="dot"></i> SYSTEM ONLINE • ZONE.SMP.PL</div>
+    <h1>ZONE<span>.SMP.PL</span></h1>
+    <p>Nowoczesny serwer Minecraft stworzony dla graczy, którzy chcą PvP, ekonomii, eventów i własnej historii w jednym miejscu.</p>
+    <div class="actions">
+      <button class="btn primary" onclick="copyIP()">▶ GRAJ TERAZ</button>
+      <a class="btn" href="#ranking">🏆 RANKING</a>
+      <a class="btn" href="https://discord.gg/tDN3ZeZey" target="_blank" rel="noopener">💬 DISCORD</a>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="status" id="serwer">
+    <div class="stat"><strong class="online">● ONLINE</strong><small>Status serwera</small></div>
+    <div class="stat"><strong id="players">—</strong><small>Gracze online</small></div>
+    <div class="stat"><strong>ZONE.SMP.PL</strong><small>IP serwera</small></div>
+    <div class="stat"><strong>1.21+</strong><small>Wersja</small></div>
+  </div>
+</div>
+
+<section id="gracz">
+<div class="container">
+  <div class="section-title"><h2>Panel gracza</h2><p>Twoje najważniejsze informacje w jednym miejscu.</p></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="player">
+        <div class="avatar">Z</div>
+        <div><div class="rank">OCZEKIWANIE</div><h3>Panel gracza</h3><p>Dostępny po otwarciu serwera</p></div>
+      </div>
+      <div class="progress"><i style="width:0"></i></div>
+      <small style="color:var(--muted)">Brak danych</small>
+      <div class="stats">
+        <div class="mini"><b>—</b><span>MONETY</span></div>
+        <div class="mini"><b>—</b><span>KILLE</span></div>
+        <div class="mini"><b>—</b><span>POZYCJA</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>⚡ Szybki start</h3>
+      <p>Skopiuj adres serwera i dołącz do ZONE.SMP.PL. Prawdziwe dane graczy, ranking i logowanie można później podłączyć do API serwera.</p>
+      <div class="actions" style="justify-content:flex-start">
+        <button class="btn primary" onclick="copyIP()">KOPIUJ IP</button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="ranking">
+<div class="container">
+  <div class="section-title"><h2>🏆 TOP 5</h2><p>Najlepsi gracze ZONE.SMP.PL</p></div>
+  <div class="card">
+    <table>
+      <thead><tr><th>#</th><th>Gracz</th><th>Poziom</th><th>XP</th></tr></thead>
+      <tbody>
+        <tr><td colspan="4" style="text-align:center;color:var(--muted);padding:32px">Brak danych — serwer nie został jeszcze otwarty. Ranking pojawi się po rozpoczęciu rozgrywki.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+
+
+
+<section id="ekonomia">
+<div class="container">
+  <div class="section-title">
+    <h2>💰 EKONOMIA</h2>
+    <p>Rozwijaj swoją gospodarkę i buduj własną pozycję na serwerze.</p>
+  </div>
+  <div class="features">
+    <div class="card feature"><div class="icon">💵</div><h3>Waluta</h3><p>Zdobywaj pieniądze podczas gry i wykorzystuj je do rozwoju.</p></div>
+    <div class="card feature"><div class="icon">🏪</div><h3>Handel</h3><p>Wymieniaj przedmioty i twórz własny rynek z innymi graczami.</p></div>
+    <div class="card feature"><div class="icon">📈</div><h3>Rozwój</h3><p>Inwestuj zarobione środki i zwiększaj swoją pozycję w gospodarce.</p></div>
+    <div class="card feature"><div class="icon">💎</div><h3>Sklep</h3><p>W przyszłości znajdzie się tutaj sklep serwerowy z przedmiotami dostępnymi w rozgrywce.</p></div>
+    <div class="card feature"><div class="icon">🤝</div><h3>Gracze</h3><p>Handluj bezpośrednio ze społecznością i ustalaj własne ceny.</p></div>
+    <div class="card feature"><div class="icon">🏆</div><h3>Cel</h3><p>Zbuduj największy majątek na ZONE.SMP.PL.</p></div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <div class="section-title"><h2>Dlaczego ZONE?</h2><p>System zaprojektowany pod dobrą rozgrywkę.</p></div>
+  <div class="features">
+    <div class="card feature"><div class="icon">🌍</div><h3>Otwarty świat</h3><p>Eksploruj, buduj i twórz własną historię.</p></div>
+    <div class="card feature"><div class="icon">⚔️</div><h3>PvP</h3><p>Rywalizuj z innymi graczami i zdobywaj pozycję.</p></div>
+    <div class="card feature"><div class="icon">💰</div><h3>Ekonomia</h3><p>Handluj, zarabiaj i rozwijaj swój majątek.</p></div>
+    <div class="card feature"><div class="icon">🎯</div><h3>Eventy</h3><p>Regularne wydarzenia i specjalne wyzwania.</p></div>
+    <div class="card feature"><div class="icon">🛡️</div><h3>Bezpieczeństwo</h3><p>Stabilne środowisko zaprojektowane z myślą o graczach.</p></div>
+    <div class="card feature"><div class="icon">⚡</div><h3>Wydajność</h3><p>Nowoczesna infrastruktura i płynna rozgrywka.</p></div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <div class="cta">
+    <h2>Gotowy wejść do ZONE?</h2>
+    <p style="color:var(--muted);margin:12px auto 22px">Dołącz do społeczności i rozpocznij swoją historię.</p>
+    <div class="actions">
+      <button class="btn primary" onclick="copyIP()">KOPIUJ IP</button>
+      <a class="btn" href="https://discord.gg/tDN3ZeZey" target="_blank" rel="noopener">DOŁĄCZ NA DISCORD</a>
+    </div>
+  </div>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© 2026 ZONE.SMP.PL • Wszystkie prawa zastrzeżone.</span>
+    <span>ZONE SYSTEM • ONLINE</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const IP="ZONE.SMP.PL";
+const toastEl=document.getElementById("toast");
+
+function showToast(message){
+  toastEl.textContent=message;
+  toastEl.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>toastEl.classList.remove("show"),2400);
+}
+async function copyIP(){
+  try{
+    await navigator.clipboard.writeText(IP);
+    showToast("✓ Skopiowano IP: "+IP);
+  }catch(e){
+    showToast("IP serwera: "+IP);
+  }
+}
+function buy(rank){
+  showToast("🛒 "+rank+" — sklep płatności zostanie podłączony później.");
+}
+document.getElementById("menu").addEventListener("click",()=>{
+  document.getElementById("nav").classList.toggle("open");
+});
+document.querySelectorAll(".nav-links a").forEach(a=>{
+  a.addEventListener("click",()=>document.getElementById("nav").classList.remove("open"));
+});
+// Dane graczy zostaną podłączone do API po otwarciu serwera.
+</script>
+</body>
+</html>
